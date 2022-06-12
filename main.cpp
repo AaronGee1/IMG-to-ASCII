@@ -1,9 +1,9 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
-int main(void)
+int main(int argc, char *argv[])
 {
-    cv::Mat img = cv::imread("/home/aaron/Desktop/projects/ImgToASCII/ImgToASCII/img/linux.png", cv::IMREAD_GRAYSCALE);
+    cv::Mat img = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
 
     if(img.cols > 100)
     {
