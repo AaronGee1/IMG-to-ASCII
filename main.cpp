@@ -1,9 +1,69 @@
 #include <iostream>
+#include <string>
 #include <opencv2/opencv.hpp>
 
-int main(int argc, char *argv[])
+void displayHeaderBlock();
+void displayMenu();
+void printToTerminal(std::string filePath = "");
+
+int main(int argc, char* argv[])
 {
-    cv::Mat img = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
+    if(argc == 2)
+    {
+        printToTerminal(argv[1]);
+        return 0;
+    }
+    displayHeaderBlock();
+    displayMenu();
+
+    return 0;
+}
+
+void displayHeaderBlock()
+{
+    std::cout << "===================" << std::endl;
+    std::cout << "IMG to ASCII" << std::endl;
+    std::cout << "By Aaron Gee 2022" << std::endl;
+    std::cout << "===================" << std::endl;
+}
+
+void displayMenu()
+{
+    std::cout << "IMG to ASCII -- Main Menu:" << std::endl;
+    std::cout << "1. Display Image in Command Line" << std::endl;
+    // std::cout << "2. Output ASCII Image in text file" << std::endl;
+    std::cout << "q. Exit" << std::endl;
+
+    char input;
+    std::cin >> input;
+
+    switch(input)
+    {
+        case '1':
+            std::cout << "1" << std::endl;
+            printToTerminal();
+            break;
+        case '2':
+            std::cout << "2" <<std::endl;
+            break;
+        case 'q':
+            std::cout << "q" << std::endl;
+            break;
+        default:
+            std::cout << "Error invalid input" << std::endl;
+            displayMenu();
+    }
+}
+
+void printToTerminal(std::string filePath)
+{
+    if( filePath.empty())
+    {
+        std::cout << "Enter image file path" << std::endl;
+        std::cin >> filePath;
+    }
+
+    cv::Mat img = cv::imread(filePath, cv::IMREAD_GRAYSCALE);
 
     if(img.cols > 100)
     {
@@ -20,6 +80,4 @@ int main(int argc, char *argv[])
         }
         std::cout << '\n';
     }
-
-    return 0;
 }
