@@ -16,7 +16,7 @@ int main(void)
         for(auto j = 0; j < img.cols; j++)
         {
             double value = (int)img.at<uchar>(i,j);
-            std::cout << ".,-~:;=!*#$"[(int)((value)/255 * 7)] << " ";
+            std::cout << ".,-~:;=!*#$@"[(int)((value)/255 * 8)] << " ";
         }
         std::cout << '\n';
     }
