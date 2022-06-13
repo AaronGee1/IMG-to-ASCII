@@ -68,6 +68,10 @@ void printToTerminal(std::string filePath)
     if(img.cols > 100)
     {
         double scale_percent = 100.0/img.cols;
+        std::cout << "Image resolution to high to output to terminal..." << std::endl;
+        std::cout << "Scaling image down " << static_cast<int>(scale_percent*100) << "%" << std::endl;
+        std::cout << "For a full resolution image output to a text file" << std::endl;
+
         cv::resize(img, img, cv::Size(), scale_percent, scale_percent);
     }
 
